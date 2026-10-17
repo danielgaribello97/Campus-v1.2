@@ -1,0 +1,56 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Cafeteria menu product item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique product ID" },
+        "name": { "type": "string", "description": "Product title", "maxLength": 100 },
+        "description": { "type": "string", "description": "Short product description", "maxLength": 300 },
+        "price": { "type": "number", "description": "Price in local currency" },
+        "category": { "type": "string", "description": "Category like Cafetería, Comida rápida, Repostería, Bebidas", "maxLength": 50 },
+        "imageUrl": { "type": "string", "description": "Unsplash image URL", "maxLength": 500 },
+        "isAvailable": { "type": "boolean", "description": "Current availability toggle" },
+        "prepTimeMinutes": { "type": "number", "description": "Estimated prep time in minutes" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["name", "price", "isAvailable", "imageUrl"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Student cafeteria order",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique order ID" },
+        "studentName": { "type": "string", "description": "Student full name or identifier", "maxLength": 80 },
+        "studentId": { "type": "string", "description": "University Student ID or code", "maxLength": 50 },
+        "notes": { "type": "string", "description": "Order special notes", "maxLength": 200 },
+        "totalPrice": { "type": "number", "description": "Total order amount to pay at counter" },
+        "pickupCode": { "type": "string", "description": "Short pickup badge code e.g. #C-104", "maxLength": 20 },
+        "status": {
+          "type": "string",
+          "enum": ["recibido", "preparando", "listo", "entregado", "cancelado"],
+          "description": "Order progression status"
+        },
+        "items": {
+          "type": "array",
+          "description": "Ordered products summary list"
+        },
+        "createdAt": { "type": "string", "description": "Order timestamp ISO or server time" },
+        "updatedAt": { "type": "string", "description": "Last status update timestamp" }
+      },
+      "required": ["studentName", "totalPrice", "pickupCode", "status", "items"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Collection of cafeteria menu items"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of cafeteria orders"
+    }
+  }
+}

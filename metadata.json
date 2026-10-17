@@ -1,0 +1,8 @@
+{
+  "name": "CampusBite - Click & Collect Cafetería Universitaria",
+  "description": "Sistema Click & Collect para cafetería universitaria con app móvil para estudiantes y dashboard operativo Kanban en vivo para el personal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
